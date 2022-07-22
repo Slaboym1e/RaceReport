@@ -18,12 +18,12 @@ app.get('/', (req, res)=>{
 
 app.post('/senddata', (req, res)=>{
     const csvupload = req.files.csvfile;
-    csvupload.mv(`${__dirname}/uploads/test/${csvupload.name}`,(err)=>{
+    csvupload.mv(`${__dirname}/uploads/${csvupload.name}`,(err)=>{
         if(err)
             res.statusCode(500).send(err);
     })
     const jsonupload = req.files.jsonfile;
-    jsonupload.mv(`${__dirname}/uploads/test/${jsonupload.name}`,(err)=>{
+    jsonupload.mv(`${__dirname}/uploads/${jsonupload.name}`,(err)=>{
         if(err)
             res.statusCode(500).send(err);
     })
@@ -33,13 +33,13 @@ app.post('/senddata', (req, res)=>{
 })
 
 app.get('/renderreports',(req, res)=>{
-    let data = fs.readFileSync(`${__dirname}/uploads/test/${req.query.csv}`,"utf-8");
+    let data = fs.readFileSync(`${__dirname}/uploads/${req.query.csv}`,"utf-8");
     data = data.split("\n");
     for(let i=0; i < data.length; i++){
         data[i] = data[i].split(',');
     }
     //
-    let pdata = JSON.parse(fs.readFileSync(`${__dirname}/uploads/test/${req.query.json}`));
+    let pdata = JSON.parse(fs.readFileSync(`${__dirname}/uploads/${req.query.json}`));
     //создание файла pdf, который в конце отправляется в response
     const docm = new docs(res,data[0][0],data[1][0],data[2][0], '50');
     docm.addHeader('Классификация по количеству кругов', 'portrait');
