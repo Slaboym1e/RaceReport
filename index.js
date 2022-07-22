@@ -269,5 +269,8 @@ const PostitionCompare = (a,b) =>{
 }
 
 app.listen(config.PORT, ()=>{
+    if (!fs.existsSync('./uploads')){
+        fs.mkdirSync('./uploads');
+    }
     console.log(`App running at http://localhost:${config.PORT}`);
 })
