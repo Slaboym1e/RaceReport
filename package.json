@@ -1,0 +1,17 @@
+{
+  "name": "racereporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "LishaiMA",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "moment": "^2.29.4",
+    "pdfkit": "^0.13.0"
+  }
+}
